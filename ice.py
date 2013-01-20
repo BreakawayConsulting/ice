@@ -365,7 +365,7 @@ def create_stdlib(excluded=STDLIB_EXCLUDE_LIST):
                       {'_frozen_importlib': 'importlib._bootstrap'})
 
 
-def create_lib(name, path, main=None):
+def create_lib(name, path, main=None, excluded=[]):
     """Create a new frozen library with modules from the specified
     path. `main` can be set to the name of a module, which will be
     aliases as '__main__' in the frozen library.
@@ -374,7 +374,7 @@ def create_lib(name, path, main=None):
     of passing it directly to create_app.
 
     """
-    mods = find_modules(path)
+    mods = find_modules(path, excluded=excluded)
     aliases = {}
     if main is not None:
         aliases['__main__'] = main
