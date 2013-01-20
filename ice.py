@@ -310,7 +310,7 @@ def find_modules(libdir, excluded=[]):
         if "__pycache__" in dirs:  # pycache directories are ignored
             dirs.remove("__pycache__")
 
-        for d in dirs:
+        for d in dirs[:]:
             # If a directory doesn't look like a package, ignore it.
             if not os.path.exists(os.path.join(root, d, '__init__' + SUFFIX)):
                 dirs.remove(d)
