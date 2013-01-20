@@ -306,6 +306,9 @@ def find_modules(libdir, excluded=[]):
 
     modules = {}
 
+    if not os.path.exists(libdir) or not os.path.isdir(libdir):
+        raise Exception("libdir {} doesn't exist.".format(libdir))
+
     for root, dirs, fns in os.walk(libdir):
         if "__pycache__" in dirs:  # pycache directories are ignored
             dirs.remove("__pycache__")
